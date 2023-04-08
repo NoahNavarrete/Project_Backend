@@ -1,9 +1,19 @@
 const {Bajaj} = require("../models/Bajaj")
+const axios = require("axios")
+
 class Controller {
 
     async ver (req, res) {
         const bajajs = await Bajaj.find();
         res.status(200).json(bajajs)
+    }
+    async buscarPorId (req, res) {
+        const bajaj = await Bajaj.findById(req.params.id)
+        res.status(200).json(bajaj)
+    }
+    async buscarPorModelo (req, res) {
+        const bajaj = await Bajaj.findOne({modelo: req.params.modelo})
+        res.status(200).json(bajaj)
     }
 
     async crear (req, res) {
@@ -25,6 +35,16 @@ class Controller {
     async eliminar (req, res) {
         await Bajaj.findByIdAndDelete(req.params.id)
         res.json({msg:"La moto " + req.params.id + " se elimino"})
+    }
+
+    async axiosGet (req, res) {
+        try {
+            const {data, status} = await axios.get("https://pokeapi.co/api/v2/pokemon/ditto")
+            res.json({data, status})
+            
+        } catch (error) {
+            res.json({data: error.response.data, status: error.response.status})
+        }
     }
 }
 
