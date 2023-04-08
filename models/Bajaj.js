@@ -12,7 +12,7 @@ const bajajSchema = new Schema({
         required: true
     },
     cc:{
-        type: String,
+        type: Number,
         required: true
     },
     color:{
