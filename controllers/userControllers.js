@@ -39,7 +39,7 @@ class Controller {
 
     async axiosGet (req, res) {
         try {
-            const {data, status} = await axios.get("https://pokeapi.co/api/v2/pokemon/ditto")
+            const {data, status} = await axios.get("https://www.dolarsi.com/api/api.php?type=valoresprincipales")
             res.json({data, status})
             
         } catch (error) {
